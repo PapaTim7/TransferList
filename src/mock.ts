@@ -28,16 +28,8 @@ export const mockListItems = [
         "title": "iOS"
     },
     {
-        "id": "1108",
-        "title": "Webpack"
-    },
-    {
         "id": "1109",
         "title": "C++"
-    },
-    {
-        "id": "1110",
-        "title": "Rust"
     },
     {
         "id": "1111",
@@ -52,16 +44,8 @@ export const mockListItems = [
         "title": "Jenkins"
     },
     {
-        "id": "1114",
-        "title": "Docker"
-    },
-    {
         "id": "1115",
         "title": "SQL"
-    },
-    {
-        "id": "1116",
-        "title": "iOS"
     },
     {
         "id": "1117",
@@ -78,18 +62,6 @@ export const mockListItems = [
     {
         "id": "1120",
         "title": "Chai"
-    },
-    {
-        "id": "1121",
-        "title": "Babel"
-    },
-    {
-        "id": "1122",
-        "title": "Express.js"
-    },
-    {
-        "id": "1123",
-        "title": "C++"
     },
     {
         "id": "1124",
@@ -116,26 +88,6 @@ export const mockListItems = [
         "title": "Android"
     },
     {
-        "id": "1130",
-        "title": "SQL"
-    },
-    {
-        "id": "1131",
-        "title": "Docker"
-    },
-    {
-        "id": "1132",
-        "title": "Rust"
-    },
-    {
-        "id": "1133",
-        "title": "Docker"
-    },
-    {
-        "id": "1134",
-        "title": "Git"
-    },
-    {
         "id": "1135",
         "title": "Angular"
     },
@@ -148,48 +100,16 @@ export const mockListItems = [
         "title": "AWS"
     },
     {
-        "id": "1138",
-        "title": "Rust"
-    },
-    {
         "id": "1139",
         "title": "Enzyme"
-    },
-    {
-        "id": "1140",
-        "title": "CSS"
-    },
-    {
-        "id": "1141",
-        "title": "AWS"
     },
     {
         "id": "1142",
         "title": "RESTful API"
     },
     {
-        "id": "1143",
-        "title": "Java"
-    },
-    {
-        "id": "1144",
-        "title": "Redux"
-    },
-    {
-        "id": "1145",
-        "title": "RESTful API"
-    },
-    {
         "id": "1146",
         "title": "Mocha"
-    },
-    {
-        "id": "1147",
-        "title": "Redux"
-    },
-    {
-        "id": "1148",
-        "title": "Microservices"
     },
     {
         "id": "1149",
@@ -198,5 +118,133 @@ export const mockListItems = [
     {
         "id": "1150",
         "title": "Go"
+    },
+    {
+        "id": "1151",
+        "title": "TensorFlow"
+    },
+    {
+        "id": "1152",
+        "title": "PyTorch"
+    },
+    {
+        "id": "1155",
+        "title": "Bootstrap"
+    },
+    {
+        "id": "1156",
+        "title": "Sass"
+    },
+    {
+        "id": "1157",
+        "title": "Less"
+    },
+    {
+        "id": "1158",
+        "title": "GraphQL"
+    },
+    {
+        "id": "1166",
+        "title": "RxJS"
+    },
+    {
+        "id": "1167",
+        "title": "Lodash"
+    },
+    {
+        "id": "1168",
+        "title": "Jest"
+    },
+    {
+        "id": "1173",
+        "title": "Storybook"
+    },
+    {
+        "id": "1174",
+        "title": "Unity"
+    },
+    {
+        "id": "1175",
+        "title": "Swift"
+    },
+    {
+        "id": "1176",
+        "title": "Scala"
+    },
+    {
+        "id": "1177",
+        "title": "C#"
+    },
+    {
+        "id": "1179",
+        "title": "Ruby"
+    },
+    {
+        "id": "1180",
+        "title": "PHP"
+    },
+    {
+        "id": "1181",
+        "title": "TypeScript"
+    },
+    {
+        "id": "1183",
+        "title": "React Native"
+    },
+    {
+        "id": "1186",
+        "title": "MySQL"
+    },
+    {
+        "id": "1187",
+        "title": "PostgreSQL"
+    },
+    {
+        "id": "1188",
+        "title": "SQLite"
+    },
+    {
+        "id": "1189",
+        "title": "Firebase"
+    },
+    {
+        "id": "1190",
+        "title": "Django"
+    },
+    {
+        "id": "1191",
+        "title": "Flask"
+    },
+    {
+        "id": "1192",
+        "title": "Laravel"
+    },
+    {
+        "id": "1193",
+        "title": "Symfony"
+    },
+    {
+        "id": "1194",
+        "title": "ASP.NET"
+    },
+    {
+        "id": "1195",
+        "title": "Spring Boot"
+    },
+    {
+        "id": "1196",
+        "title": "Express"
+    },
+    {
+        "id": "1197",
+        "title": "NestJS"
+    },
+    {
+        "id": "1198",
+        "title": "Ruby on Rails"
+    },
+    {
+        "id": "1199",
+        "title": "CodeIgniter"
     }
 ]

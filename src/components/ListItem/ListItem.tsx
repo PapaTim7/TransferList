@@ -14,7 +14,7 @@ export function ListItem({ text, isChecked, onClick }: ListItemProps) {
   return (
     <li
       onClick={handleClick}
-      className="flex cursor-pointer hover:bg-slate-100 transition-all"
+      className="flex cursor-pointer hover:bg-slate-100 transition-all py-4 px-6"
     >
       <div className="inline-flex items-center relative mr-2">
         <input
@@ -44,7 +44,7 @@ export function ListItem({ text, isChecked, onClick }: ListItemProps) {
           </svg>
         </span>
       </div>
-      {text}
+      <div className="truncate max-w-full">{text}</div>
     </li>
   );
 }
