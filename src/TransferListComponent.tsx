@@ -8,6 +8,8 @@ import {
 } from "./assets";
 import { Button } from "./components/Button";
 import { SelectionCounter } from "./components/SelectionCounter";
+import { usePagination } from "./components/Pagination/usePagination";
+import { Pagination } from "./components/Pagination";
 
 export type ItemType = {
   id: string;
@@ -29,6 +31,19 @@ export function TransferListComponent({
 }: TransferListComponentProps) {
   const [leftSelectedSet, setLeftSelectedSet] = useState(new Set<string>());
   const [rightSelectedSet, setRightSelectedSet] = useState(new Set<string>());
+
+  const {
+    rowsPerPage: rowsPerPageRight,
+    setRowsPerPage: setRowsPerPageRight,
+    currentPage: currentPageRight,
+    setCurrentPage: setCurrentPageRight,
+  } = usePagination();
+  const {
+    rowsPerPage: rowsPerPageLeft,
+    setRowsPerPage: setRowsPerPageLeft,
+    currentPage: currentPageLeft,
+    setCurrentPage: setCurrentPageLeft,
+  } = usePagination();
 
   const handleItemClick = (
     targetItem: string,
@@ -56,6 +71,15 @@ export function TransferListComponent({
     setRightItems(newRightItemsArray);
     setLeftItems([...leftItems, ...additionLeftItemsArray]);
     setRightSelectedSet(new Set());
+    if (
+      newRightItemsArray.length <=
+      (currentPageRight - 1) * rowsPerPageRight
+    ) {
+      // no items on the right side -> page down
+      setCurrentPageRight(
+        Math.ceil(newRightItemsArray.length / rowsPerPageRight)
+      );
+    }
   };
 
   const handleMoveLeftSelected = () => {
@@ -72,6 +96,10 @@ export function TransferListComponent({
     setLeftItems(newLeftItemsArray);
     setRightItems([...rightItems, ...additionRightItemsArray]);
     setLeftSelectedSet(new Set());
+    if (newLeftItemsArray.length <= (currentPageLeft - 1) * rowsPerPageLeft) {
+      // no items on the left side -> page down
+      setCurrentPageLeft(Math.ceil(newLeftItemsArray.length / rowsPerPageLeft));
+    }
   };
 
   const handleMoveRightAll = () => {
@@ -79,28 +107,48 @@ export function TransferListComponent({
     setRightItems([]);
     setLeftItems([...leftItems, ...rightItems]);
     setRightSelectedSet(new Set());
+    setCurrentPageRight(1);
   };
   const handleMoveLeftAll = () => {
     // left all to the right
     setLeftItems([]);
     setRightItems([...rightItems, ...leftItems]);
     setLeftSelectedSet(new Set());
+    setCurrentPageLeft(1);
   };
 
   return (
     <div className="flex">
-      <div className="min-w-[400px] max-w-[40vw] grow shadow-xl py-4 rounded">
-        <SelectionCounter count={leftSelectedSet.size} />
-        {leftItems.map((leftItem) => (
-          <ListItem
-            key={leftItem.id}
-            text={leftItem.title}
-            isChecked={leftSelectedSet.has(leftItem.id)}
-            onClick={() => {
-              handleItemClick(leftItem.id, leftSelectedSet, setLeftSelectedSet);
-            }}
-          />
-        ))}
+      <div className="flex flex-col justify-between min-w-[400px] max-w-[40vw] grow shadow-xl py-4 rounded">
+        <div>
+          <SelectionCounter count={leftSelectedSet.size} />
+          {leftItems
+            .slice(
+              (currentPageLeft - 1) * rowsPerPageLeft,
+              (currentPageLeft - 1) * rowsPerPageLeft + rowsPerPageLeft
+            )
+            .map((leftItem) => (
+              <ListItem
+                key={leftItem.id}
+                text={leftItem.title}
+                isChecked={leftSelectedSet.has(leftItem.id)}
+                onClick={() => {
+                  handleItemClick(
+                    leftItem.id,
+                    leftSelectedSet,
+                    setLeftSelectedSet
+                  );
+                }}
+              />
+            ))}
+        </div>
+        <Pagination
+          totalCount={leftItems.length}
+          currentPage={currentPageLeft}
+          setCurrentPage={setCurrentPageLeft}
+          rowsPerPage={rowsPerPageLeft}
+          setRowsPerPage={setRowsPerPageLeft}
+        />
       </div>
 
       <div className="flex flex-col p-4 pt-6">
@@ -130,22 +178,36 @@ export function TransferListComponent({
         </Button>
       </div>
 
-      <div className="min-w-[400px] max-w-[40vw] grow shadow-xl py-4 rounded">
-        <SelectionCounter count={rightSelectedSet.size} />
-        {rightItems.map((rightItem) => (
-          <ListItem
-            key={rightItem.id}
-            text={rightItem.title}
-            isChecked={rightSelectedSet.has(rightItem.id)}
-            onClick={() => {
-              handleItemClick(
-                rightItem.id,
-                rightSelectedSet,
-                setRightSelectedSet
-              );
-            }}
-          />
-        ))}
+      <div className="flex flex-col justify-between min-w-[400px] max-w-[40vw] grow shadow-xl py-4 rounded">
+        <div>
+          <SelectionCounter count={rightSelectedSet.size} />
+          {rightItems
+            .slice(
+              (currentPageRight - 1) * rowsPerPageRight,
+              (currentPageRight - 1) * rowsPerPageRight + rowsPerPageRight
+            )
+            .map((rightItem) => (
+              <ListItem
+                key={rightItem.id}
+                text={rightItem.title}
+                isChecked={rightSelectedSet.has(rightItem.id)}
+                onClick={() => {
+                  handleItemClick(
+                    rightItem.id,
+                    rightSelectedSet,
+                    setRightSelectedSet
+                  );
+                }}
+              />
+            ))}
+        </div>
+        <Pagination
+          totalCount={rightItems.length}
+          currentPage={currentPageRight}
+          setCurrentPage={setCurrentPageRight}
+          rowsPerPage={rowsPerPageRight}
+          setRowsPerPage={setRowsPerPageRight}
+        />
       </div>
     </div>
   );
