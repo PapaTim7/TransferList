@@ -1,7 +1,6 @@
 import clsx from "clsx";
 
 export function SelectionCounter({ count }: { count: number }) {
-  console.log(count);
   return (
     <div
       className={clsx(

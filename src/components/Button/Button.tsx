@@ -18,10 +18,11 @@ export function Button({
     <div
       role="button"
       tabIndex={0}
-      // disabled={isDisabled}
       className={clsx(
-        "flex cursor-pointer py-2.5 px-5 shadow-sm text-sm font-medium transition-all bg-white rounded-lg border-solid border border-gray-400 hover:bg-gray-100 hover:opacity-80",
-        { ["cursor-auto opacity-40 hover:opacity-40"]: isDisabled },
+        "flex py-2.5 px-5 shadow-sm text-sm font-medium transition-all bg-white rounded-lg border-solid border border-gray-400 hover:bg-gray-100 ",
+        isDisabled
+          ? "cursor-auto opacity-40"
+          : "cursor-pointer hover:opacity-80",
         className
       )}
       onClick={onClick}
