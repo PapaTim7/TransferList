@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import "./App.css";
 import { mockListItems } from "./mock";
-import { ItemType, TransferListComponent } from "./TransferListComponent";
+import { TransferListComponent } from "./TransferListComponent";
+import { ItemType } from "./TransferListComponent/TransferListComponent.types";
 
 function App() {
   const [leftItemsInit, setLeftItems] = useState(mockListItems.slice(0, 30));

@@ -1,27 +1,19 @@
-import { useState } from "react";
-import { ListItem } from "./components/ListItem";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
+import { ListItem } from "../components/ListItem";
 import {
   LeftArrowAllSvg,
   LeftArrowSvg,
   RightArrowAllSvg,
   RightArrowSvg,
-} from "./assets";
-import { Button } from "./components/Button";
-import { SelectionCounter } from "./components/SelectionCounter";
-import { usePagination } from "./components/Pagination/usePagination";
-import { Pagination } from "./components/Pagination";
-
-export type ItemType = {
-  id: string;
-  title: string;
-};
-
-type TransferListComponentProps = {
-  leftItems: ItemType[];
-  rightItems: ItemType[];
-  setLeftItems: (items: ItemType[]) => void;
-  setRightItems: (items: ItemType[]) => void;
-};
+} from "../assets";
+import { Button } from "../components/Button";
+import { SelectionCounter } from "../components/SelectionCounter";
+import { usePagination } from "../components/Pagination/usePagination";
+import { Pagination } from "../components/Pagination";
+import {
+  TransferListComponentProps,
+  ItemType,
+} from "./TransferListComponent.types";
 
 export function TransferListComponent({
   leftItems,
@@ -45,17 +37,20 @@ export function TransferListComponent({
     setCurrentPage: setCurrentPageLeft,
   } = usePagination();
 
-  const handleItemClick = (
-    targetItem: string,
-    items: Set<string>,
-    setStateCallback: React.Dispatch<React.SetStateAction<Set<string>>>
-  ) => {
-    const newItems = new Set(items);
-    newItems.has(targetItem)
-      ? newItems.delete(targetItem)
-      : newItems.add(targetItem);
-    setStateCallback(newItems);
-  };
+  const handleItemClick = useCallback(
+    (
+      targetItem: string,
+      items: Set<string>,
+      setStateCallback: Dispatch<SetStateAction<Set<string>>>
+    ) => {
+      const newItems = new Set(items);
+      newItems.has(targetItem)
+        ? newItems.delete(targetItem)
+        : newItems.add(targetItem);
+      setStateCallback(newItems);
+    },
+    []
+  );
 
   const handleMoveRightSelected = () => {
     // right selected to the left
@@ -117,28 +112,27 @@ export function TransferListComponent({
     setCurrentPageLeft(1);
   };
 
+  const leftRowsOffset = (currentPageLeft - 1) * rowsPerPageLeft;
+  const rightRowsOffset = (currentPageRight - 1) * rowsPerPageRight;
+
   return (
     <div className="flex">
       <div className="flex flex-col justify-between min-w-[400px] max-w-[40vw] grow shadow-xl py-4 rounded">
         <div>
           <SelectionCounter count={leftSelectedSet.size} />
           {leftItems
-            .slice(
-              (currentPageLeft - 1) * rowsPerPageLeft,
-              (currentPageLeft - 1) * rowsPerPageLeft + rowsPerPageLeft
-            )
+            .slice(leftRowsOffset, leftRowsOffset + rowsPerPageLeft)
             .map((leftItem) => (
               <ListItem
                 key={leftItem.id}
                 text={leftItem.title}
                 isChecked={leftSelectedSet.has(leftItem.id)}
-                onClick={() => {
-                  handleItemClick(
-                    leftItem.id,
-                    leftSelectedSet,
-                    setLeftSelectedSet
-                  );
-                }}
+                onClick={handleItemClick.bind(
+                  "",
+                  leftItem.id,
+                  leftSelectedSet,
+                  setLeftSelectedSet
+                )}
               />
             ))}
         </div>
@@ -182,22 +176,18 @@ export function TransferListComponent({
         <div>
           <SelectionCounter count={rightSelectedSet.size} />
           {rightItems
-            .slice(
-              (currentPageRight - 1) * rowsPerPageRight,
-              (currentPageRight - 1) * rowsPerPageRight + rowsPerPageRight
-            )
+            .slice(rightRowsOffset, rightRowsOffset + rowsPerPageRight)
             .map((rightItem) => (
               <ListItem
                 key={rightItem.id}
                 text={rightItem.title}
                 isChecked={rightSelectedSet.has(rightItem.id)}
-                onClick={() => {
-                  handleItemClick(
-                    rightItem.id,
-                    rightSelectedSet,
-                    setRightSelectedSet
-                  );
-                }}
+                onClick={handleItemClick.bind(
+                  "",
+                  rightItem.id,
+                  rightSelectedSet,
+                  setRightSelectedSet
+                )}
               />
             ))}
         </div>
