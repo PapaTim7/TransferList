@@ -2,7 +2,12 @@
 
 Transfer List component with pagination for both areas.
 
-Run locally: `npm run dev`
+<img width="919" alt="image" src="https://github.com/PapaTim7/TransferList/assets/127735159/9a0c3384-4fea-4288-bc3d-d51355f1454b">
+
+## Run locally
+`npm i`
+<br/>
+`npm run dev`
 
 ## Usage
 
