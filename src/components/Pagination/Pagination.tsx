@@ -52,14 +52,16 @@ export function Pagination({
   return (
     <div className="flex justify-between px-6 mt-4">
       <div
-        className={clsx("flex", { ["opacity-40"]: totalCount <= rowsPerPage })}
+        className={clsx("flex items-end", {
+          ["opacity-40"]: totalCount <= rowsPerPage,
+        })}
       >
         {pagesArray.length ? (
           pagesArray.map((item, index) =>
             item ? (
               <Button
-                className={clsx("px-2 py-1 mx-1", {
-                  ["bg-blue-600 hover:bg-blue-500 text-white hover:text-black"]:
+                className={clsx("px-[12px] py-[4px] mx-1", {
+                  ["bg-blue-600 hover:bg-blue-400 text-white hover:text-black"]:
                     currentPage === +item,
                 })}
                 key={item}
@@ -82,7 +84,7 @@ export function Pagination({
           <Button
             onClick={() => {}}
             isDisabled
-            className="px-2 py-1 mx-1 bg-blue-600 text-white hover:bg-blue-600"
+            className="px-[12px] py-[4px] mx-1 cursor-default bg-blue-600 text-white hover:bg-blue-600 hover:text-black"
           >
             1
           </Button>
