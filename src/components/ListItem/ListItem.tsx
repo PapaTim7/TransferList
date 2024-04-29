@@ -1,10 +1,5 @@
 import { MouseEvent } from "react";
-
-type ListItemProps = {
-  text: string;
-  isChecked?: boolean;
-  onClick: () => void;
-};
+import { ListItemProps } from "./ListItem.types";
 
 export function ListItem({ text, isChecked, onClick }: ListItemProps) {
   const handleClick = (event: MouseEvent<HTMLLIElement>) => {

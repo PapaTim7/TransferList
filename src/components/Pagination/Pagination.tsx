@@ -2,15 +2,7 @@ import { useMemo } from "react";
 import { Button } from "../Button";
 import clsx from "clsx";
 import { rowsPerPageOptions } from "./constants";
-
-export type RowsPerPageOptionsType = 5 | 10 | 15 | 25 | 50;
-type PaginationProps = {
-  totalCount: number;
-  rowsPerPage: number;
-  setRowsPerPage: (newRowsPerPage: RowsPerPageOptionsType) => void;
-  currentPage: number;
-  setCurrentPage: (newCurrentPage: number) => void;
-};
+import { PaginationProps, RowsPerPageOptionsType } from "./Pagination.types";
 
 export function Pagination({
   totalCount,
@@ -67,7 +59,7 @@ export function Pagination({
             item ? (
               <Button
                 className={clsx("px-2 py-1 mx-1", {
-                  ["bg-blue-600 hover:bg-blue-200 text-white hover:text-black"]:
+                  ["bg-blue-600 hover:bg-blue-500 text-white hover:text-black"]:
                     currentPage === +item,
                 })}
                 key={item}
